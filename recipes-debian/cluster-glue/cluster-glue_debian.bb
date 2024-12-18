@@ -17,6 +17,8 @@ DEPENDS = "libxml2 libtool glib-2.0 bzip2 util-linux net-snmp openhpi libopenipm
 inherit debian-package
 require recipes-debian/sources/cluster-glue.inc
 
+CVE_PRODUCT = "clusterlabs:cluster_glue"
+
 SRC_URI += " \
     file://0001-don-t-compile-doc-and-Error-Fix.patch \
     file://0001-ribcl.py.in-Warning-Fix.patch \
