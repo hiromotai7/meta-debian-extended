@@ -10,6 +10,9 @@ require ruby.inc
 SRC_URI += " \
            file://0001-configure.ac-check-finite-isinf-isnan-as-macros-firs.patch \
            file://run-ptest \
+           file://add-test-preparation-and-fix-result-output.patch \
+           file://renew-test-certificates.patch \
+           file://fix-for-tzdata-2022g.patch \
            "
 
 PACKAGECONFIG ??= ""
@@ -56,6 +59,9 @@ do_install_append_class-target () {
 
 do_install_ptest () {
     cp -rf ${S}/test ${D}${PTEST_PATH}/
+    cp -rf ${S}/debian/tests ${D}${PTEST_PATH}/
+    mkdir -p ${D}${PTEST_PATH}/bin/
+    ln -s ${bindir}/erb ${D}${PTEST_PATH}/bin/erb
     cp -r ${S}/include ${D}/${libdir}/ruby/
     test_case_rb=`grep rubygems/test_case.rb ${B}/.installed.list`
     sed -i -e 's:../../../test/:../../../ptest/test/:g' ${D}/$test_case_rb
@@ -76,6 +82,10 @@ FILES_${PN} += "${libdir}/ruby/2.5.0/"
 FILES_${PN} += "${libdir}/ruby/gems"
 FILES_${PN} += "${libdir}/ruby/site_ruby"
 FILES_${PN} += "${libdir}/ruby/vendor_ruby"
+
+RDEPENDS_${PN}-ptest += " dpkg dpkg-perl findutils make coreutils"
+RDEPENDS_${PN}-ptest += " ${PN}-rdoc ${PN}-ri-docs "
+RDEPENDS_${PN}-ptest += " openssl readline libyaml zlib libffi gmp gperf tzdata openssh"
 
 FILES_${PN}-ptest_append_class-target += "${libdir}/ruby/include"
 
