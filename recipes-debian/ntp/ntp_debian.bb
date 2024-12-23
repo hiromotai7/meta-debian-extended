@@ -15,7 +15,7 @@ LIC_FILES_CHKSUM = "file://COPYRIGHT;md5=e877a1d567a6a58996d2b66e3e387003"
 inherit debian-package
 require recipes-debian/sources/ntp.inc
 
-DEPENDS = "libevent"
+DEPENDS = "libevent ruby-native"
 
 SRC_URI += " \
            file://ntp-4.2.4_p6-nano.patch \
