@@ -30,10 +30,6 @@ SRC_URI += "file://clamd.conf \
            file://tmpfiles.clamav \
            file://headers_fixup.patch \
            file://oe_cmake_fixup.patch \
-           file://fix_systemd_socket.patch \
-           file://0001-cmake-Fix-stuct-packing-alignment-attribute-test.patch \
-           file://0002-Workarround-to-fix-error-on-do_install.patch \
-           file://0003-Fix-configuration-error-when-ENABLE_EXTERNAL_MSPACK-.patch \
            "
 
 UPSTREAM_CHECK_COMMITS = "1"
