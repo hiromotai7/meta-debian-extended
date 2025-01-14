@@ -11,8 +11,6 @@ SRC_URI += " \
            file://0001-configure.ac-check-finite-isinf-isnan-as-macros-firs.patch \
            file://run-ptest \
            file://add-test-preparation-and-fix-result-output.patch \
-           file://renew-test-certificates.patch \
-           file://fix-for-tzdata-2022g.patch \
            "
 
 PACKAGECONFIG ??= ""
