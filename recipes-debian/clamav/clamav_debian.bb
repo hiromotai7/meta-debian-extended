@@ -12,7 +12,7 @@ LICENSE = "LGPL-2.1"
 DEPENDS = "glibc llvm libtool db openssl zlib curl libxml2 bison pcre2 json-c libcheck"
 DEPENDS += "systemd libmspack"
  
-LIC_FILES_CHKSUM = "file://COPYING;beginline=2;endline=3;md5=f7029fbbc5898b273d5902896f7bbe17"
+LIC_FILES_CHKSUM = "file://COPYING.txt;beginline=2;endline=3;md5=f7029fbbc5898b273d5902896f7bbe17"
 
 LEAD_SONAME = "libclamav.so"
 SO_VER = "9.0.5"
