@@ -1,8 +1,8 @@
 # Common variables used by all Rust builds
 export rustlibdir = "${libdir}/rust"
-FILES:${PN} += "${rustlibdir}/*.so"
-FILES:${PN}-dev += "${rustlibdir}/*.rlib ${rustlibdir}/*.rmeta"
-FILES:${PN}-dbg += "${rustlibdir}/.debug"
+FILES_${PN} += "${rustlibdir}/*.so"
+FILES_${PN}-dev += "${rustlibdir}/*.rlib ${rustlibdir}/*.rmeta"
+FILES_${PN}-dbg += "${rustlibdir}/.debug"
 
 RUSTLIB = "-L ${STAGING_LIBDIR}/rust"
 RUST_DEBUG_REMAP = "--remap-path-prefix=${WORKDIR}=/usr/src/debug/${PN}/${EXTENDPE}${PV}-${PR}"
@@ -14,7 +14,7 @@ RUST_PANIC_STRATEGY ?= "unwind"
 # Native builds are not effected by TCLIBC. Without this, rust-native
 # thinks it's "target" (i.e. x86_64-linux) is a musl target.
 RUST_LIBC = "${TCLIBC}"
-RUST_LIBC:class-native = "glibc"
+RUST_LIBC_class-native = "glibc"
 
 def determine_libc(d, thing):
     '''Determine which libc something should target'''
@@ -27,7 +27,7 @@ def determine_libc(d, thing):
     elif thing == 'BUILD' and (d.getVar('HOST_SYS') != d.getVar('BUILD_SYS')):
         libc = d.getVar('RUST_LIBC')
     else:
-        libc = d.getVar('RUST_LIBC:class-native')
+        libc = d.getVar('RUST_LIBC_class-native')
 
     return libc
 
