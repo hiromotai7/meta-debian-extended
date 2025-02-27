@@ -170,10 +170,11 @@ do_rust_create_wrappers () {
 	create_wrapper "${RUST_TARGET_AR}" "${WRAPPER_TARGET_AR}"
 
 	# Need to filter out LD_LIBRARY_PATH from the linker without using shell
+	layerdir=$(echo ${BBFILE_PATTERN_debian-extended} | tr -d '^')
 	mv ${RUST_BUILD_CCLD} ${RUST_BUILD_CCLD}.real
-	${BUILD_CC} ${COREBASE}/meta/files/rust-ccld-wrapper.c -o ${RUST_BUILD_CCLD}
+	${BUILD_CC} ${layerdir}/classes/files/rust-ccld-wrapper.c -o ${RUST_BUILD_CCLD}
 	mv ${RUST_TARGET_CCLD} ${RUST_TARGET_CCLD}.real
-	${BUILD_CC} ${COREBASE}/meta/files/rust-ccld-wrapper.c -o ${RUST_TARGET_CCLD}
+	${BUILD_CC} ${layerdir}/classes/files/rust-ccld-wrapper.c -o ${RUST_TARGET_CCLD}
 }
 
 addtask rust_create_wrappers before do_configure after do_patch do_prepare_recipe_sysroot
