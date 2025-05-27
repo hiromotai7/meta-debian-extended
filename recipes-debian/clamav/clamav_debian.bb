@@ -58,6 +58,10 @@ PACKAGECONFIG[systemd] = "-DENABLE_SYSTEMD=ON -DSYSTEMD_UNIT_DIR=${systemd_syste
 export OECMAKE_C_FLAGS += " -I${STAGING_INCDIR} -L ${RECIPE_SYSROOT}${nonarch_libdir} -L${STAGING_LIBDIR} -lpthread " 
 export OECMAKE_C_FLAGS += "-lsystemd -lmspack" 
 
+do_compile_prepend() {
+    export RUST_TARGET_PATH=${WORKDIR}/recipe-sysroot-native/usr/lib/rustlib
+}
+
 do_install_prepend() {
     install -d ${D}/usr/share/clamav
 }
