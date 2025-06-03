@@ -11,6 +11,7 @@ LICENSE = "LGPL-2.1"
 
 DEPENDS = "glibc llvm libtool db openssl zlib curl libxml2 bison pcre2 json-c libcheck"
 DEPENDS += "systemd libmspack"
+DEPENDS += "cargo-native rust-llvm-native"
  
 LIC_FILES_CHKSUM = "file://COPYING.txt;beginline=2;endline=3;md5=f7029fbbc5898b273d5902896f7bbe17"
 
@@ -19,7 +20,7 @@ SO_VER = "9.0.5"
 
 BINCONFIG = "${bindir}/clamav-config"
 
-inherit cmake chrpath pkgconfig useradd systemd multilib_header multilib_script
+inherit cmake rust chrpath pkgconfig useradd systemd multilib_header multilib_script
 inherit debian-package
 require recipes-debian/sources/clamav.inc
 DEBIAN_UNPACK_DIR = "${WORKDIR}/${BPN}-${REPACK_PV}"
