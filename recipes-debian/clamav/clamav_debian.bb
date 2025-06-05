@@ -39,12 +39,16 @@ CLAMAV_GID ?= "clamav"
 
 MULTILIB_SCRIPTS = "${PN}-dev:${bindir}/clamav-config"
 
+# FIXME: Need to set the target corresponding to the MACHINE value
+RUST_TARGET = "aarch64-unknown-linux-gnu"
+
 EXTRA_OECMAKE = " -DCMAKE_BUILD_TYPE=Release -DOPTIMIZE=ON \
                   -DCLAMAV_GROUP=${CLAMAV_GID} -DCLAMAV_USER=${CLAMAV_UID} \ 
                   -DENABLE_TESTS=OFF -DBUILD_SHARED_LIBS=ON \
                   -DDISABLE_MPOOL=ON -DENABLE_FRESHCLAM_DNS_FIX=ON \
                   -DCMAKE_SKIP_RPATH=TRUE \
                   -DENABLE_EXTERNAL_MSPACK=ON \
+                  -DRUST_COMPILER_TARGET=${RUST_TARGET} \
                    "
 
 PACKAGECONFIG ?= "  clamonacc \
